@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 export default function FontInspectorPanel() {
   const [target, setTarget] = useState<HTMLElement | undefined>(undefined);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   const handleMouse = (e: MouseEvent) => {
     if (!(e.target instanceof HTMLElement)) return;
@@ -31,10 +32,17 @@ export default function FontInspectorPanel() {
   const fontFamily = compStyles.getPropertyValue("font-family");
   const lineHeight = compStyles.getPropertyValue("line-height");
   const color = compStyles.getPropertyValue("color");
+  const fontWeight = compStyles.getPropertyValue("font-weight");
 
   const rect = target.getBoundingClientRect();
-  const panelTop = rect.y + rect.height;
+  let panelTop = rect.y + rect.height + 12; // 12 - offset
   const panelLeft = rect.x;
+  const calculatedPanelHeight = panelRef.current
+    ? panelRef.current.getBoundingClientRect().height
+    : 0;
+
+  if (panelTop + calculatedPanelHeight > document.documentElement.clientHeight)
+    panelTop = rect.y - 12 - calculatedPanelHeight; // show panel at the top if panel out of viewport
 
   return (
     <>
@@ -67,16 +75,19 @@ export default function FontInspectorPanel() {
     sans-serif;
   color: rgb(46, 52, 56);
 
-  pointer-events: all;
   width: 280px;
   background-color: white;
-  font-size: 13px;
-  line-height: 20px;
+  font-size: 12px;
+  line-height: 16px;
   border: 1px solid #cfcfcf;
+  box-shadow:
+    0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1);
+  border-radius: 4px;
 }
 
 .font-inspector--panel__row {
-  padding: 10px 20px;
+  padding: 8px 16px;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
@@ -112,7 +123,7 @@ export default function FontInspectorPanel() {
           className="font-inspector--wrapper__offset"
           style={{ width: panelLeft + "px" }}
         ></div>
-        <div className="font-inspector--panel">
+        <div ref={panelRef} className="font-inspector--panel">
           <div className="font-inspector--panel__row">
             <strong>Font size:</strong>
             <span>{fontSize}</span>
@@ -120,6 +131,10 @@ export default function FontInspectorPanel() {
           <div className="font-inspector--panel__row">
             <strong>Line height:</strong>
             <span>{lineHeight}</span>
+          </div>
+          <div className="font-inspector--panel__row">
+            <strong>Font weight:</strong>
+            <span>{fontWeight}</span>
           </div>
           <div className="font-inspector--panel__row">
             <strong>Color:</strong>

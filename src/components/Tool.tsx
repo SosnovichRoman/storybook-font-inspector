@@ -2,7 +2,7 @@ import React, { memo, useCallback, useEffect } from "react";
 import { useGlobals, type API } from "storybook/manager-api";
 import { IconButton } from "storybook/internal/components";
 import { ADDON_ID, KEY, TOOL_ID } from "../constants";
-import { LightningIcon } from "@storybook/icons";
+import { ParagraphIcon } from "@storybook/icons";
 
 export const Tool = memo(function MyAddonSelector({ api }: { api: API }) {
   const [globals, updateGlobals, storyGlobals] = useGlobals();
@@ -18,9 +18,9 @@ export const Tool = memo(function MyAddonSelector({ api }: { api: API }) {
 
   useEffect(() => {
     api.setAddonShortcut(ADDON_ID, {
-      label: "Toggle Measure [O]",
+      label: "Inspect font [O]",
       defaultShortcut: ["O"],
-      actionName: "outline",
+      actionName: "Inspect font",
       showInMenu: false,
       action: toggle,
     });
@@ -31,10 +31,10 @@ export const Tool = memo(function MyAddonSelector({ api }: { api: API }) {
       key={TOOL_ID}
       active={isActive}
       disabled={isLocked}
-      title="Enable my addon"
+      title="Enable font inspector"
       onClick={toggle}
     >
-      <LightningIcon />
+      <ParagraphIcon />
     </IconButton>
   );
 });
