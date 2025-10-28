@@ -7,8 +7,8 @@ import { useEffect, useGlobals } from "storybook/preview-api";
 
 import React from "react";
 import { createRoot } from "react-dom/client";
-import FontInspectorPanel from "./components/FontInspectorPanel";
 import { KEY } from "./constants";
+import FontInspectorPanel from "./components/FontInspectorPanel";
 
 export const withGlobals = (
   StoryFn: StoryFunction<Renderer>,
@@ -22,28 +22,17 @@ export const withGlobals = (
   const isInDocs = context.viewMode === "docs";
 
   useEffect(() => {
-    if (!isInDocs) {
-      addExtraContentToStory(canvas, {
-        myAddon,
-      });
+    if (myAddon && !isInDocs) {
+      const rootDiv =
+        canvas.querySelector(`[data-id="${KEY}"]`) ||
+        canvas.appendChild(document.createElement("div"));
+      rootDiv.setAttribute("data-id", KEY);
+      const newRoot = createRoot(rootDiv);
+      newRoot.render(<FontInspectorPanel />);
+
+      return () => newRoot.unmount();
     }
-  }, [myAddon, isInDocs]);
+  }, [myAddon, context, isInDocs]);
 
   return StoryFn();
 };
-
-function addExtraContentToStory(
-  canvas: ParentNode,
-  state: { myAddon: boolean },
-) {
-  const rootDiv =
-    canvas.querySelector(`[data-id="${KEY}"]`) ||
-    canvas.appendChild(document.createElement("div"));
-
-  rootDiv.setAttribute("data-id", KEY);
-
-  const root = createRoot(rootDiv);
-
-  if (state.myAddon === true) root.render(<FontInspectorPanel />);
-  else root.unmount();
-}
