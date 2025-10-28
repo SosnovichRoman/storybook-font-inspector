@@ -1,3 +1,15 @@
+# v1.1.4 (Tue Oct 28 2025)
+
+#### 🐛 Bug Fix
+
+- Docs [#2](https://github.com/SosnovichRoman/storybook-font-inspector/pull/2) ([@SosnovichRoman](https://github.com/SosnovichRoman))
+
+#### Authors: 1
+
+- Roman Sosnovich ([@SosnovichRoman](https://github.com/SosnovichRoman))
+
+---
+
 # v1.1.3 (Tue Oct 28 2025)
 
 
