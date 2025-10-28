@@ -1,9 +1,13 @@
-.font-inspector--wrapper {
+import { dedent } from "ts-dedent";
+
+export const style = dedent/* css */ `
+  .font-inspector--wrapper {
   position: fixed;
   left: 0;
   right: 0;
   pointer-events: none;
   display: flex;
+  z-index: 1000;
 }
 
 .font-inspector--wrapper__offset {
@@ -30,9 +34,7 @@
   font-size: 12px;
   line-height: 16px;
   border: 1px solid #cfcfcf;
-  box-shadow:
-    0 4px 6px -1px rgb(0 0 0 / 0.1),
-    0 2px 4px -2px rgb(0 0 0 / 0.1);
+  filter: drop-shadow(rgba(0, 0, 0, 0.1) 0px 1px 3px);
   border-radius: 4px;
 }
 
@@ -55,8 +57,11 @@
 .font-inspector--color__preview {
   width: 12px;
   height: 12px;
+  border: 1px solid #cfcfcf;
 }
 
 .font-inspector--highlight {
   outline: 2px solid rgba(30, 167, 253, 1) !important;
 }
+
+`;
