@@ -4,7 +4,10 @@
   "description": "Font inspector for storybook",
   "keywords": [
     "storybook-addons",
-    "font"
+    "font",
+    "inspect",
+    "style",
+    "css"
   ],
   "repository": {
     "type": "git",
