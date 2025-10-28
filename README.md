@@ -1,8 +1,13 @@
 # Storybook Addon storybook-font-inspector
 Font inspector for storybook
 
+## Demo
+
+![Demo](https://github.com/user-attachments/assets/4b259a8a-4290-42fe-a632-64079ae1e5d8)
+
 ## Requirements
 Storybook@>=9.0.0 
+
 This addon should work well with any framework. If you find that the addon does not work, please open an issue.
 
 ## Getting started
