@@ -1,3 +1,15 @@
+# v1.1.5 (Wed Nov 26 2025)
+
+#### 🐛 Bug Fix
+
+- panel corner position [#3](https://github.com/SosnovichRoman/storybook-font-inspector/pull/3) ([@SosnovichRoman](https://github.com/SosnovichRoman))
+
+#### Authors: 1
+
+- Roman Sosnovich ([@SosnovichRoman](https://github.com/SosnovichRoman))
+
+---
+
 # v1.1.4 (Tue Oct 28 2025)
 
 #### 🐛 Bug Fix
