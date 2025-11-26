@@ -1,21 +1,10 @@
 import { dedent } from "ts-dedent";
 
 export const style = dedent/* css */ `
-  .font-inspector--wrapper {
-  position: fixed;
-  left: 0;
-  right: 0;
-  pointer-events: none;
-  display: flex;
-  z-index: 1000;
-}
-
-.font-inspector--wrapper__offset {
-  flex-shrink: 1;
-}
 
 .font-inspector--panel {
-  flex-shrink: 0;
+  position: fixed;
+  z-index: 1000;
   font-family:
     "Nunito Sans",
     -apple-system,
